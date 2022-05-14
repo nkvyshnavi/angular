@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="header">
+        <br>
+        <a [routerLink]="['../itinerary']" class="btn btn-outline-secondary" 
+        style="float: right;margin-bottom: 10px" >add itinerary</a>
+    </div>
+    <table class ="table table-bordered table-stripped">
+        <thead>
+            <tr>
+                <th>itineraryId</th>
+                <th>flightId</th>
+                <th>DepAirport</th>
+                <th>DepDate</th>
+                <th>DepTime</th>
+                <th>ArrAirport</th>
+                <th>ArrDate</th>
+                <th>ArrTime</th>
+                <th>flightName</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let emp of itineraryService.itinerarys">
+                <td >{{emp.itineraryId}}</td>
+                <td>{{emp.flightId}}</td>
+                <td>{{emp.depAirport}} </td>
+                <td>{{emp.depDate | date: 'dd-MMM-yyyy'}} </td>
+                <td>{{emp.depTime}} </td>
+                <td>{{emp.arrAirport}} </td>
+                <td>{{emp.arrDate | date: 'dd-MMM-yyyy'}} </td>
+                <td>{{emp.arrTime}} </td>
+                <td>{{emp.flightName}} </td>
+                <td><button (click)="updateEmployee(emp.id)" class="btn btn-info">Edit</button>&nbsp;
+                    <button (click)="deleteEmployee(emp.id)" class="btn btn-sm btn-outline-danger">Delete</button></td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>

@@ -1,0 +1,129 @@
+<p>itinerary works!</p>
+<form name=empform #form="ngForm" autocomplete="off" novalidate (ngSubmit)="onSubmit(form)">
+    <!--Id-->
+    <input type="hidden" name="id" [(ngModel)]="itineraryService.formData.itineraryId">
+
+ <!--Full Name-->
+ <div class="form-group">
+    <label>DepAirport</label>
+    <input name="DepAirport" id="DepAirport"
+        #DepAirport="ngModel" 
+        [(ngModel)]="itineraryService.formData.DepAirport"
+        class="form-control" placeholder="Enter dep Airport"
+        minlength="8" maxlength="25" required 
+        [ngClass]="{'is-invalid':DepAirport.touched && DepAirport.invalid}">
+    <div class="validation-error" 
+        *ngIf="DepAirport.touched && DepAirport.invalid">
+        <div *ngIf="DepAirport.errors">
+            Invalid dep airport 
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <label>DepDate</label>
+    <input type="date"  name="DepDate" id="DepDate"
+        #DepDate="ngModel" 
+        [(ngModel)]="itineraryService.formData.DepDate"
+        class="form-control" placeholder="Enter DepDate"
+        required 
+        [ngClass]="{'is-invalid':DepDate.touched && DepDate.invalid}">
+    <div class="validation-error" 
+        *ngIf="DepDate.touched && DepDate.invalid">
+        <div *ngIf="DepDate.errors">
+            Invalid DepDate 
+        </div>
+    </div>
+</div>
+
+<!--depTime-->
+<div class="form-group">
+    <label>DepTime</label>
+    <input name="DepTime" id="DepTime"
+        #DepTime="ngModel" 
+        [(ngModel)]="itineraryService.formData.DepTime"
+        class="form-control" placeholder="Enter dep Time"
+        minlength="8" maxlength="25" required 
+        [ngClass]="{'is-invalid':DepTime.touched && DepTime.invalid}">
+    <div class="validation-error" 
+        *ngIf="DepTime.touched && DepTime.invalid">
+        <div *ngIf="DepTime.errors">
+            Invalid dep Time
+        </div>
+    </div>
+</div>
+
+
+<!--arrAirport-->
+<div class="form-group">
+    <label>ArrAirport</label>
+    <input name="ArrAirport" id="ArrAirport"
+        #ArrAirport="ngModel" 
+        [(ngModel)]="itineraryService.formData.ArrAirport"
+        class="form-control" placeholder="Enter dep Time"
+        minlength="8" maxlength="25" required 
+        [ngClass]="{'is-invalid':ArrAirport.touched && ArrAirport.invalid}">
+    <div class="validation-error" 
+        *ngIf="ArrAirport.touched && ArrAirport.invalid">
+        <div *ngIf="ArrAirport.errors">
+            Invalid ArrAirport
+        </div>
+    </div>
+</div>
+
+
+<!-- arrTime-->
+<div class="form-group">
+    <label>arrTime</label>
+    <input type="date" name="ArrTime" id="ArrTime"
+        #ArrTime="ngModel" 
+        [(ngModel)]="itineraryService.formData.ArrTime"
+        class="form-control" placeholder="Enter dep Time"
+        minlength="8" maxlength="25" required 
+        [ngClass]="{'is-invalid':ArrTime.touched && ArrTime.invalid}">
+    <div class="validation-error" 
+        *ngIf="ArrTime.touched && ArrTime.invalid">
+        <div *ngIf="ArrTime.errors">
+            Invalid ArrTime
+        </div>
+    </div>
+</div>
+
+
+<!-- flightName-->
+<div class="form-group">
+    <label>flightName</label>
+    <input name="flightName" id="flightName"
+        #flightName="ngModel" 
+        [(ngModel)]="itineraryService.formData.flightName"
+        class="form-control" placeholder="Enter dep Time"
+        minlength="8" maxlength="25" required 
+        [ngClass]="{'is-invalid':flightName.touched && flightName.invalid}">
+    <div class="validation-error" 
+        *ngIf="flightName.touched && flightName.invalid">
+        <div *ngIf="flightName.errors">
+            Invalid flightName
+        </div>
+    </div>
+</div>
+<!--flight DropdownList-->
+<div class="form-group">
+    <label>Flight id</label>
+    <select name="flightId" id="flightId" class="form-control required" #flightId="ngModel"
+        [(ngModel)]="itineraryService.formData.flightId">
+        <option value=0 disabled>Choose flightId</option>
+        <option *ngFor="let dept of itineraryService.flights" value="{{dept.flightId}}">{{dept.flightId}}</option>
+    </select>
+    <div class="validation-error" 
+    *ngIf="flightId.touched && flightId.invalid">
+    <div *ngIf="flightId.errors">
+        flight id is Required
+    </div>
+</div>
+</div>
+<div class="form-group">
+    <button type="submit" [disabled]="!(form.valid && form.dirty)"
+    class="btn btn-lg btn-primary form-control"> Submit
+    </button>
+</div>
+</form>
